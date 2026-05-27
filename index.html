@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vedantham Sathvika · Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#07070f;
+  --bg2:#0f0f1a;
+  --bg3:#161625;
+  --border:#ffffff10;
+  --border2:#ffffff20;
+  --text:#f2efea;
+  --text2:#9a97b5;
+  --text3:#5a587a;
+  --accent:#c084fc;
+  --accent2:#a855f7;
+  --teal:#2dd4bf;
+  --green:#4ade80;
+  --coral:#fb7c5a;
+  --yellow:#fbbf24;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--accent2);color:#fff;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;border-bottom:1px solid transparent;transition:all .3s;}
+nav.sc{border-bottom-color:var(--border);background:rgba(7,7,15,.92);backdrop-filter:blur(14px);padding:1rem 4rem;}
+.logo{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-btn{font-family:'DM Mono',monospace;font-size:12px;padding:8px 20px;border:1px solid var(--accent2);color:var(--accent);background:transparent;border-radius:2px;text-decoration:none;transition:all .2s;}
+.nav-btn:hover{background:var(--accent);color:#fff;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:52px 52px;opacity:.4;mask-image:radial-gradient(ellipse 80% 60% at 40% 50%,black 20%,transparent 80%);pointer-events:none;}
+.hero-glow{position:absolute;top:10%;left:0%;width:600px;height:500px;background:radial-gradient(ellipse,rgba(192,132,252,.12) 0%,transparent 65%);pointer-events:none;}
+.htag{font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.12em;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;opacity:0;animation:fu .8s .2s forwards;}
+.htag::before{content:'';width:32px;height:1px;background:var(--teal);}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(3.2rem,7vw,6.5rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:.5rem;opacity:0;animation:fu .8s .35s forwards;}
+h1 em{font-style:italic;color:var(--accent);}
+.hrole{font-family:'DM Mono',monospace;font-size:clamp(.8rem,1.4vw,.95rem);color:var(--text2);letter-spacing:.1em;margin-bottom:2rem;opacity:0;animation:fu .8s .5s forwards;}
+.hdesc{max-width:520px;font-size:1.05rem;color:var(--text2);line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fu .8s .65s forwards;}
+.hdesc strong{color:var(--text);font-weight:500;}
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fu .8s .8s forwards;}
+.btn-p{font-family:'DM Mono',monospace;font-size:13px;padding:14px 28px;background:var(--accent);color:#fff;border:none;border-radius:2px;text-decoration:none;transition:transform .2s,opacity .2s;display:inline-block;}
+.btn-p:hover{transform:translateY(-2px);opacity:.9;}
+.btn-o{font-family:'DM Mono',monospace;font-size:13px;padding:14px 28px;background:transparent;color:var(--text);border:1px solid var(--border2);border-radius:2px;text-decoration:none;transition:border-color .2s,color .2s;display:inline-block;}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);}
+.hstats{position:absolute;right:4rem;bottom:4rem;display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:fu .8s 1s forwards;}
+.stn{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--accent);line-height:1;}
+.stl{font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;margin-top:4px;}
+
+/* MARQUEE */
+.mq-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;background:var(--bg2);}
+.mq-track{display:flex;gap:3rem;width:max-content;animation:mq 20s linear infinite;}
+.mq-item{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);letter-spacing:.1em;white-space:nowrap;display:flex;align-items:center;gap:12px;}
+.mq-item::before{content:'◆';color:var(--accent2);font-size:7px;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%)}}
+
+/* SKILLS */
+#skills{background:var(--bg2);}
+section{padding:6rem 4rem;}
+.seye{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:.15em;margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.seye::before{content:'';width:24px;height:1px;background:var(--teal);}
+.stit{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.1;margin-bottom:1rem;}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem;}
+.scell{background:var(--bg2);padding:1.75rem;transition:background .2s;}
+.scell:hover{background:var(--bg3);}
+.scico{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;margin-bottom:1rem;}
+.scell h3{font-size:14px;font-weight:500;margin-bottom:.4rem;}
+.scell p{font-size:13px;color:var(--text3);line-height:1.6;}
+.stags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.75rem;}
+.stag{font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border:1px solid var(--border2);color:var(--text2);border-radius:2px;}
+
+/* PROJECTS */
+#projects{background:var(--bg);}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:3rem;}
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .3s,transform .3s;}
+.pcard:hover{border-color:var(--accent2);transform:translateY(-4px);}
+.pacc{height:3px;width:100%;}
+.ptop{padding:1.75rem 1.75rem 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.pnum{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.pbody{padding:1rem 1.75rem 1.75rem;}
+.ptitle{font-family:'DM Serif Display',serif;font-size:1.35rem;line-height:1.2;margin-bottom:.7rem;}
+.pdesc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:1.2rem;}
+.ptools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;}
+.ptool{font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:var(--bg3);color:var(--teal);border-radius:2px;}
+.pfoot{border-top:1px solid var(--border);padding:1rem 1.75rem;display:flex;align-items:center;justify-content:space-between;}
+.plink{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent2);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .2s;}
+.plink:hover{gap:10px;}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;}
+.about-text p{font-size:1rem;color:var(--text2);line-height:1.9;margin-bottom:1.25rem;}
+.about-text p strong{color:var(--text);font-weight:500;}
+.edu-cards{display:flex;flex-direction:column;gap:1rem;}
+.edu-c{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1.25rem;}
+.edu-deg{font-size:14px;font-weight:500;margin-bottom:4px;}
+.edu-yr{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.currently{margin-top:1.5rem;padding:1.25rem;border:1px solid var(--border);border-radius:4px;}
+.curr-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;margin-bottom:.75rem;}
+
+/* CONTACT */
+#contact{background:var(--bg);text-align:center;padding:8rem 4rem;}
+.ctit{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4.5vw,4rem);line-height:1.1;margin-bottom:1.5rem;}
+.ctit em{font-style:italic;color:var(--accent);}
+.csub{font-size:1rem;color:var(--text2);margin-bottom:3rem;max-width:440px;margin-left:auto;margin-right:auto;}
+.clinks{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
+.clink{font-family:'DM Mono',monospace;font-size:12px;padding:12px 24px;border:1px solid var(--border2);color:var(--text2);border-radius:2px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:border-color .2s,color .2s;}
+.clink:hover{border-color:var(--accent);color:var(--accent);}
+.cemail{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent2);padding-bottom:4px;transition:color .2s;}
+.cemail:hover{color:var(--accent2);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:1rem;}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s;}
+.rv.vi{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
+@media(max-width:768px){
+  nav,nav.sc{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  section{padding:4rem 1.5rem;}
+  #hero{padding:6rem 1.5rem 4rem;}
+  .hstats{position:static;flex-direction:row;margin-top:3rem;}
+  .about-grid{grid-template-columns:1fr;}
+  footer{padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#hero" class="logo">PJ.portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:vedhanthamsathvika@gmail.com" class="nav-btn">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="htag">Open to opportunities</div>
+  <h1>Vedantham<br><em>Sathvika</em></h1>
+  <p class="hrole">ASPIRING DATA ANALYST · HYDERABAD, INDIA</p>
+  <p class="hdesc">I transform <strong>raw data into meaningful business insights</strong> using Python, SQL, and Power BI — turning datasets into dashboards and decisions through analytics and visualization.</p>
+  <div class="hbtns">
+    <a href="#projects" class="btn-p">View my work</a>
+    <a href="#contact" class="btn-o">Get in touch</a>
+  </div>
+  <div class="hstats">
+    <div>
+      <div class="stn">3+</div>
+      <div class="stl">DATA PROJECTS</div>
+    </div>
+    <div>
+      <div class="stn">5</div>
+      <div class="stl">CORE TOOLS</div>
+    </div>
+    <div>
+      <div class="stn">∞</div>
+      <div class="stl">CURIOSITY</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <span class="mq-item">Python</span><span class="mq-item">SQL</span><span class="mq-item">Power BI</span><span class="mq-item">Pandas</span><span class="mq-item">NumPy</span><span class="mq-item">Matplotlib</span><span class="mq-item">Excel</span><span class="mq-item">Data Cleaning</span><span class="mq-item">EDA</span><span class="mq-item">Dashboards</span><span class="mq-item">Machine Learning</span><span class="mq-item">Statistics</span>
+    <span class="mq-item">Python</span><span class="mq-item">SQL</span><span class="mq-item">Power BI</span><span class="mq-item">Pandas</span><span class="mq-item">NumPy</span><span class="mq-item">Matplotlib</span><span class="mq-item">Excel</span><span class="mq-item">Data Cleaning</span><span class="mq-item">EDA</span><span class="mq-item">Dashboards</span><span class="mq-item">Machine Learning</span><span class="mq-item">Statistics</span>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="seye rv">Skills</div>
+  <h2 class="stit rv d1">What I work with</h2>
+  <div class="sgrid">
+    <div class="scell rv">
+      <div class="scico" style="background:#0d1f10;color:#4ade80;">PY</div>
+      <h3>Data Analysis</h3>
+      <p>End-to-end analysis — cleaning, transformation, and deep exploratory analysis on real datasets.</p>
+      <div class="stags"><span class="stag">Python</span><span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Excel</span></div>
+    </div>
+    <div class="scell rv d1">
+      <div class="scico" style="background:#15102b;color:#c084fc;">DB</div>
+      <h3>Databases & SQL</h3>
+      <p>Writing queries to extract, join, and aggregate data from relational databases for reporting.</p>
+      <div class="stags"><span class="stag">SQL</span><span class="stag">MySQL</span><span class="stag">Joins</span><span class="stag">Aggregations</span></div>
+    </div>
+    <div class="scell rv d2">
+      <div class="scico" style="background:#101a28;color:#4f9ef8;">BI</div>
+      <h3>Visualisation</h3>
+      <p>Building interactive dashboards with filters, KPIs, and slicers that tell a data story clearly.</p>
+      <div class="stags"><span class="stag">Power BI</span><span class="stag">Matplotlib</span><span class="stag">Seaborn</span></div>
+    </div>
+    <div class="scell rv d3">
+      <div class="scico" style="background:#1a100d;color:#fb7c5a;">DA</div>
+      <h3>Data Analytics</h3>
+      <p>Hands-on experience in data cleaning, exploratory data analysis, dashboard creation, and reporting using real-world datasets.</p>
+      <div class="stags"><span class="stag">EDA</span><span class="stag">Power BI</span><span class="stag">Excel</span>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="seye rv">Projects</div>
+  <h2 class="stit rv d1">Selected work</h2>
+  <p style="color:var(--text2);max-width:480px;" class="rv d2">Real datasets. Real problems. Real insights.</p>
+  <div class="pgrid">
+
+    <!-- PROJECT 1 — Replace this entire block with your first project -->
+    <div class="pcard rv">
+      <div class="pacc" style="background:linear-gradient(90deg,#4ade80,#2dd4bf);"></div>
+      <div class="ptop"><span class="pnum">01</span><span style="font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:rgba(74,222,128,.08);color:#4ade80;border-radius:2px;">Python · Pandas</span></div>
+      <div class="pbody">
+        <h3 class="ptitle">Cafeteria Sales Data Cleaning & Analysis</h3>
+        <!-- REPLACE: Write 2-3 sentences about what this project is about, what data you used, and what you found -->
+        <p class="pdesc">Cleaned and analyzed 10,000+ cafeteria sales records by handling missing values and inconsistencies. Identified top-selling items, peak hours, and revenue trends for better inventory planning.</p>
+        <!-- REPLACE: Add your actual tools -->
+        <div class="ptools"><span class="ptool">Python</span><span class="ptool">Numpy</span><span class="ptool">Pandas</span><span class="ptool">Matplotlib</span></div>
+      </div>
+      <div class="pfoot">
+        <!-- REPLACE: Add your GitHub repo link -->
+        <a href="https://github.com/Sathvika0804/Cafeteria-Sales-Analytics-Project" target="_blank" class="plink">View on GitHub →</a>
+        <span style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);">DATA ANALYSIS</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 — Replace this entire block with your second project -->
+    <div class="pcard rv d1">
+      <div class="pacc" style="background:linear-gradient(90deg,#c084fc,#fb7c5a);"></div>
+      <div class="ptop"><span class="pnum">02</span><span style="font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:rgba(192,132,252,.08);color:#c084fc;border-radius:2px;">Power BI</span></div>
+      <div class="pbody">
+        <h3 class="ptitle">HR Analytics Dashboard</h3>
+        <!-- REPLACE: Write your second project description -->
+        <p class="pdesc">Built an interactive Power BI dashboard to track attendance, employee performance, and attrition rates. Implemented KPIs and filters for department-wise analysis to support workforce decisions.</p>
+        <!-- REPLACE: Add your actual tools -->
+        <div class="ptools"><span class="ptool">Power BI</span><span class="ptool">KPIs</span><span class="ptool">Dashboard</span></div>
+      </div>
+      <div class="pfoot">
+        <a href="https://github.com/Sathvika0804/HR-Analytics-Dashboard" target="_blank" class="plink">View on GitHub →</a>
+        <span style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);">DASHBOARD</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 — Replace this entire block with your third project -->
+    <div class="pcard rv d2">
+      <div class="pacc" style="background:linear-gradient(90deg,#2dd4bf,#4f9ef8);"></div>
+      <div class="ptop"><span class="pnum">03</span><span style="font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:rgba(45,212,191,.08);color:#2dd4bf;border-radius:2px;">Python · SQL</span></div>
+      <div class="pbody">
+        <h3 class="ptitle">Zomato Restaurant Data Analysis</h3>
+        <!-- REPLACE: Write your third project description -->
+        <p class="pdesc">Processed and analyzed 50,000+ restaurant records to understand cuisine trends, pricing patterns, and customer behavior. Built Power BI dashboards for insights and decision-making.</p>
+        <!-- REPLACE: Add your actual tools -->
+        <div class="ptools"><span class="ptool">Python</span><span class="ptool">Pandas</span><span class="ptool">NumPy</span><span class="ptool">Power BI</span></div><span class="ptool">Matplotlib</span>
+      </div>
+      <div class="pfoot">
+        <a href="https://github.com/Sathvika0804/Zomato-Restaurant-Data-Analysis" target="_blank" class="plink">View on GitHub →</a>
+        <span style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);">DATA + SQL</span>
+      </div>
+    </div>
+<!-- PROJECT 4 — Customer Churn Analysis -->
+<div class="pcard rv d3">
+  <div class="pacc" style="background:linear-gradient(90deg,#fbbf24,#fb7c5a);"></div>
+  
+  <div class="ptop">
+    <span class="pnum">04</span>
+    <span style="font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:rgba(251,191,36,.08);color:#fbbf24;border-radius:2px;">Python · Power BI</span>
+  </div>
+
+  <div class="pbody">
+    <h3 class="ptitle">Customer Churn Analysis & Power BI Dashboard</h3>
+
+    <p class="pdesc">
+      Developed an end-to-end customer churn analysis project using Python and Power BI. Built an interactive 5-page dashboard to analyze customer behavior, revenue impact, churn drivers, and risk segmentation for better business decision-making.
+    </p>
+
+    <div class="ptools">
+      <span class="ptool">Python</span>
+      <span class="ptool">Pandas</span>
+      <span class="ptool">NumPy</span>
+      <span class="ptool">Power BI</span>
+      <span class="ptool">Matplotlib</span>
+      <span class="ptool">Seaborn</span>
+      <span class="ptool">EDA</span>
+    </div>
+  </div>
+
+  <div class="pfoot">
+    <a href="https://github.com/Sathvika0804/Customer-Churn-Powerbi-Dashboard" target="_blank" class="plink">View on GitHub →</a>
+
+    <span style="font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);">
+      CUSTOMER ANALYTICS
+    </span>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="seye rv">About me</div>
+  <h2 class="stit rv d1">The person behind<br>the data</h2>
+  <div class="about-grid">
+    <div class="about-text rv">
+      <!-- REPLACE: Write your own bio in these paragraphs -->
+      <p>I'm <strong>Vedantham Sathvika</strong>, an aspiring Data Analyst based in Hyderabad, India. I enjoy discovering patterns in data and turning them into insights that help solve real-world problems.</p>
+      <p>My journey into analytics started through practical training and hands-on projects involving Python, SQL, Excel, and Power BI. I have worked with large datasets and developed dashboards that simplify complex information.</p>
+      <p>I'm currently <strong>actively looking for Data Analyst opportunities</strong> where I can apply my analytical skills and continue learning.</p>
+    </div>
+    <div class="rv d1">
+      <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.12em;margin-bottom:1.25rem;">EDUCATION</p>
+      <div class="edu-cards">
+        <!-- REPLACE: Add your actual education -->
+        <div class="edu-c"><div class="edu-deg">B.Tech Computer Science & Engineering — B.V. Raju Institute of Technology</div><div class="edu-yr">2021–2025 | CGPA: 8.34</div></div>
+        <div class="edu-c">
+<div class="edu-deg">Data Analytics Training — Agileology</div>
+<div class="edu-yr">SQL | Python | Excel | Power BI</div>
+</div>
+      </div>
+      <div class="currently">
+        <div class="curr-lbl">CURRENTLY LEARNING</div>
+        <!-- REPLACE: Add what you are currently learning -->
+        <div class="stags"><span class="stag">Machine Learning</span><span class="stag">Deep Learning</span><span class="stag">Statistics</span><span class="stag">SQL Advanced</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="seye rv" style="justify-content:center;">Contact</div>
+  <h2 class="ctit rv d1">Let's work on<br>something <em>data-driven</em></h2>
+  <p class="csub rv d2">Open to full-time Data Analyst roles, internships, and freelance projects. Based in [Your City] — available remotely.</p>
+  <div class="clinks rv d2">
+    <!-- REPLACE: Add your actual LinkedIn URL -->
+    <a href="https://linkedin.com/in/vedantham-sathvika" target="_blank" class="clink">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <!-- REPLACE: Add your actual GitHub username -->
+    <a href="https://github.com/Sathvika0804" target="_blank" class="clink">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      GitHub
+    </a>
+    <!-- REPLACE: Add your actual email -->
+    <a href="mailto:vedhanthamsathvika@gmail.com" class="clink">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+  </div>
+  <!-- REPLACE: Add your actual email -->
+  <a href="mailto:vedhanthamsathvika@gmail.com" class="cemail rv">vedhanthamsathvika@gmail.com</a>
+</section>
+
+<footer>
+  <span>© 2025 Vedantham Sathvika</span>
+  <span>Aspiring Data Analyst · Hyderabad, India</span>
+  <span style="color:var(--accent2);">Open to work</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc',scrollY>60);
+});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vi');});},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
